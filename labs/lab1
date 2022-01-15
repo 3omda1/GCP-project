@@ -1,0 +1,99 @@
+to list all projects
+gcloud projects list
+
+to list default configuration :
+
+gcloud config list
+[compute]
+region = europe-west3
+zone = europe-west3-a
+[core]
+account = ahmedemad97531@gmail.com
+disable_usage_reporting = True
+project = ahmed-emad-project
+
+
+to set a default project (or to create a new whole configuration) : 
+gcloud init
+
+to list all your configurations 
+gcloud config configurations list
+
+NAME     IS_ACTIVE  ACCOUNT                   PROJECT             COMPUTE_DEFAULT_ZONE  COMPUTE_DEFAULT_REGION
+default  True       ahmedemad97531@gmail.com  ahmed-emad-project  europe-west3-a        europe-west3
+
+To switch between configurations, run the following command:
+gcloud config configurations activate CONFIGURATION_NAME
+
+To list custom roles for the project myproject
+gcloud iam roles list --project=ahmed-emad-project
+
+To list all predefined roles, run:
+gcloud iam roles list
+
+to describe role
+gcloud iam roles describe roles/compute.viewe
+
+to describe my custom role name (Ahmed-custom-role-1)
+gcloud iam roles describe ITI_task --project=ahmed-emad-project
+
+to List all authenticated accounts
+gcloud auth list
+
+to list all your service accounts
+gcloud iam service-accounts list
+DISPLAY NAME                            EMAIL                                                                  DISABLED
+Ahmed-first-serviceaccount              ahmed-first-serviceaccount@ahmed-emad-project.iam.gserviceaccount.com  False
+
+
+to Activate my service account:
+1 create a key locally
+gcloud iam service-accounts keys create Ahmed-service-account-key.json \
+> --iam-account=ahmed-first-serviceaccount@ahmed-emad-project.iam.gserviceaccount.com
+
+2 gcloud auth activate-service-account ahmed-first-serviceaccount@ahmed-emad-project.iam.gserviceaccount.com --key-file=Ahmed-service-account-key.json
+Activated service account credentials for: [ahmed-first-serviceaccount@ahmed-emad-project.iam.gserviceaccount.com]
+
+gcloud auth list
+                            Credentialed Accounts
+ACTIVE  ACCOUNT
+*       ahmed-first-serviceaccount@ahmed-emad-project.iam.gserviceaccount.com
+        ahmedemad97531@gmail.com
+
+gcloud iam roles list
+API [iam.googleapis.com] not enabled on project [856668351207]. Would you like to enable and retry (this will take a few 
+minutes)? (y/N)?  y
+failed :reason: AUTH_PERMISSION_DENIED
+
+gcloud iam roles list --project=ahmed-emad-project
+failed :reason: AUTH_PERMISSION_DENIED
+
+gcloud iam roles delete my-custom-role-1 --project=ahmed-emad-project
+failed :reason: AUTH_PERMISSION_DENIED
+
+
+to list your active account
+gcloud config list account --format "value(core.account)"
+
+
+To set the active account, run:
+    $ gcloud config set account `ACCOUNT`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

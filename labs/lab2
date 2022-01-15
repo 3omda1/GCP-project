@@ -1,0 +1,122 @@
+1 VPC created with default 29 subnets in it and 30 routes (29 for each subnet and 1 Default route to the Internet.)
+as for deletion : local routes cannot be deleted but the default route to the internet can be delete (if you want to make your VPC private)
+
+2 VPC (with two subnets) created with 3 routes (2 for each subnet and 1 Default route to the Internet) 
+
+3 to list all VPCs
+gcloud compute networks list
+
+to list all subnets
+gcloud compute networks subnets list
+gcloud compute networks subnets list --sort-by=[NAME] (to sort them by name)
+
+4 In two different ways, How would you block internet access from you vpc
+solution 1 : to delete the default route to the internet
+solution 2 : to set a firewall rule to deny all ingress (inbound) and egress (outbound) connections 
+
+5 firewall named iti-lab2 created for ahmed-custom-vpc (network) allowing ingress traffic for all instances in this network 
+and soure ipv4 range is 0.0.0.0/0 on TCP : 22 protocol
+ 
+6 allows ingress traffic from the IP range 35.235.240.0/20. This range contains all IP addresses that IAP uses for TCP forwarding. allow ports 22 for SSH connections and 3389 for RDP and 80 for HTTP
+
+7 NAT gateway named iti-lab2-nat created for VPC network ahmed-custom-vpc and Region europe-west3 with cloud router iti-lab2-router (created for ahmed-custom-vpc and europe-west3 region)
+
+8 VM named  iti-lab2-puplic-vm created in europe-west3 region 
+In two different ways, SSH into this VM :
+solution 1 : to connect via browser
+solution 2 : gcloud beta compute ssh --zone "europe-west3-a" "iti-lab2-puplic-vm"  --project "ahmed-emad-project" 
+(from view gcloud option from drop down menu arrow near SSH word)
+gcloud beta compute ssh --zone "europe-west3-a" "iti-lab2-puplic-vm"  --project "ahmed-emad-project" --tunnel-through-iap
+
+
+9 VM named  iti-lab2-private-vm created in europe-west3 region
+gcloud beta compute ssh --zone "europe-west3-a" "iti-lab2-private-vm"  --tunnel-through-iap --project "ahmed-emad-project"
+sudo apt install nginx
+systemctl status nginx (status running)
+custom image created named ahmed-img-nginx from the iti-lab2-private-vm instance (this image has know NGINX installed in it)
+
+10 instance template named ahmed-puplic-instance-template-1 created
+health check named ahmed-lab2-health-check created with HTTP 80
+instance group named ahmed-instance-group-1 created
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
