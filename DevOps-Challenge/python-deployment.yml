@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ahmed-python
+  labels:
+    app: ahmed-app
+    name: ahmed-python
+  
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ahmed-app
+      name: ahmed-python
+        #container image
+  template:
+    metadata:
+      name: ahmed-python
+      labels:
+        app: ahmed-app
+        name: ahmed-python
+    spec:
+      containers:
+      - name: ahmed-python
+        image: gcr.io/ahmed-emad-project/ahmed-image
+        ports:
+        - containerPort: 8000
+        env:
+          - name: ENVIRONMENT
+            value: "DEV"
+          - name: HOST
+            value: "localhost"
+          - name: PORT
+            value: "8000"
+          - name: REDIS_HOST
+            value: "ahmed"
+          - name: REDIS_PORT
+            value: "6379"
+          - name: REDIS_DB
+            value: "0"
+
