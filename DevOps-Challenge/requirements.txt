@@ -1,2 +1,2 @@
-redis==3.0.1
+redis==latest 
 tornado==6.1.0
