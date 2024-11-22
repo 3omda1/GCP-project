@@ -1,2 +1,2 @@
 redis==latest 
-tornado==6.1.0
+tornado==6.4.2
